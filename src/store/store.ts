@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { githubApi } from '../services/githubApi';
+import { pokemonsApi } from '../services/pokemonsApi';
 
 export default configureStore({
   reducer: {
-    [githubApi.reducerPath]: githubApi.reducer,
+    [pokemonsApi.reducerPath]: pokemonsApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(githubApi.middleware),
+    getDefaultMiddleware().concat(pokemonsApi.middleware),
 });
