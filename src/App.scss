@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+
+  .titleWrapper {
+    display: flex;
+    justify-content: center;
+
+    .title {
+      white-space: normal;
+      border: 2px solid black;
+      padding: 20px;
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  }
+}

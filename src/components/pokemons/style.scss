@@ -1,0 +1,29 @@
+.pokemonsWrapper {
+  width: 600px;
+  padding: 30px;
+
+  .pokemons {
+    display: grid;
+    //grid-template-columns: 200px 200px 200px;
+    grid-template-columns: repeat(3, 1fr); /* 3 айтема в строке */
+    grid-template-rows: repeat(2, auto); /* 2 строки */
+    //grid-gap: 20px; /* Расстояние между айтемами */
+    grid-gap: 20px;
+  }
+
+  .buttonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .button {
+      padding: 10px;
+      cursor: pointer;
+      width: 300px;
+      background-color: #2771ff;
+      color: white;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  }
+}

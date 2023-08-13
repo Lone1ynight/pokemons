@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { useGetPokemonQuery } from '../../services/pokemonsApi';
+import './style.scss'
 
 export interface PokemonItemProps {
   name: string,
-  types: any[]
+  onSelect: (arg0: string) => void
 }
 
-export const PokemonItem: FC<PokemonItemProps> = ({ name, types }) => {
+export const PokemonItem: FC<PokemonItemProps> = ({ name, onSelect }) => {
   const { data: pokemonData, error: pokemonError, isLoading: pokemonLoading } = useGetPokemonQuery(name);
 
   if (pokemonLoading) {
@@ -18,18 +19,18 @@ export const PokemonItem: FC<PokemonItemProps> = ({ name, types }) => {
   // }
 
   return (
-    <li>
-      <h2>{name}</h2>
+    <div className='pokemonCard' onClick={() => onSelect(name)}>
       <img
         src={pokemonData.sprites.front_default}
         alt={`${name} sprite`}
       />
-      <h3>Types:</h3>
-      <ul>
-        {pokemonData.types.map((type:any) => (
-          <li key={type.slot}>{type.type.name}</li>
+      <h2 className="name">{name}</h2>
+      <div className="types">
+        {pokemonData.types.map((data:any) => (
+          <div key={data.slot} className={`type ${data.type.name}`}>{data.type.name}</div>
         ))}
-      </ul>
-    </li>
+      </div>
+
+    </div>
   );
 }

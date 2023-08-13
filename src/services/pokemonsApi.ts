@@ -6,13 +6,9 @@ export const pokemonsApi = createApi({
   tagTypes: [''],
   endpoints: (builder) => ({
     getAllPokemons: builder.query<any, number>({
-      // query: () => 'pokemon',
-
       async queryFn(_arg, _queryApi, _extraOptions, fetch) {
         try {
           const result = await fetch(`pokemon?limit=${_arg}`);
-
-          console.log(result.data);
           return {data: result.data};
         } catch (e) {
           console.log(e);
@@ -20,20 +16,6 @@ export const pokemonsApi = createApi({
         }
       },
     }),
-    // fetchAllItems: builder.query({
-    //   async queryFn(_arg, _queryApi, _extraOptions, fetch) {
-    //     try {
-    //       const result = await fetch(`pokemon?_limit=${_arg}`);
-    //
-    //       console.log(result.data);
-    //       return {data: result.data};
-    //     } catch (e) {
-    //       console.log(e);
-    //       return {data: null};
-    //     }
-    //   },
-    //   // providesTags: () => ['Devs']
-    // }),
     getPokemonTypes: builder.query<any, void>({
       query: () => 'type',
     }),
