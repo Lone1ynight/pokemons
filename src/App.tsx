@@ -7,7 +7,9 @@ function App() {
 
       <div className="App">
         <div className="titleWrapper"><div className="title">Pokemon Dex</div></div>
-        <Pokemons />
+        <div className="content-wrapper">
+          <Pokemons />
+        </div>
       </div>
   );
 }

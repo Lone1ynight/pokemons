@@ -1,34 +1,58 @@
 import { FC } from 'react';
 import { useGetPokemonQuery } from '../../services/pokemonsApi';
 import './style.scss'
+import {
+  Stat,
+  Type
+} from '../../types/pokemons';
 
 export interface PokemonDetailsProps {
   name: string
 }
 export const PokemonDetails: FC<PokemonDetailsProps> = ({ name }) => {
-  const { data: pokemonData, error: pokemonError, isLoading: pokemonLoading } = useGetPokemonQuery(name);
+  const { data: pokemonData, isLoading: pokemonLoading } = useGetPokemonQuery(name);
 
   if (pokemonLoading) {
     return <div>Loading details for {name}...</div>;
   }
 
-  // if (pokemonError) {
-  //   return <div>Error loading details for {name}: {pokemonError.message}</div>;
-  // }
-
   return (
     <div className="details">
-      <h2>{name} Details</h2>
-      <ul>
-        <li>Type: {pokemonData.types.map((data: any) => data.type.name).join(', ')}</li>
-        <li>Attack: {pokemonData.stats[1].base_stat}</li>
-        <li>Defense: {pokemonData.stats[2].base_stat}</li>
-        <li>HP: {pokemonData.stats[0].base_stat}</li>
-        <li>SP Attack: {pokemonData.stats[3].base_stat}</li>
-        <li>SP Defense: {pokemonData.stats[4].base_stat}</li>
-        <li>Speed: {pokemonData.stats[5].base_stat}</li>
-        {/* Другие характеристики */}
-      </ul>
+      <img
+        src={pokemonData.sprites.front_default}
+        alt={`${name} sprite`}
+        className="details__child"
+      />
+      <h2>{name} Details #{pokemonData.id}</h2>
+      <table className="details__child">
+        <tbody>
+        <tr>
+          <td>Type</td>
+          <td>
+            {pokemonData.types.map((data: Type) => data.type.name).join(", ")}
+          </td>
+        </tr>
+        {
+          pokemonData.stats.map((item: Stat) => (<tr key={item.stat.name}>
+              <td>{item.stat.name}</td>
+              <td>{item.base_stat}</td>
+            </tr>)
+          )
+        }
+        <tr>
+          <td>weight</td>
+          <td>
+            {pokemonData.weight}
+          </td>
+        </tr>
+        <tr>
+          <td>total-moves</td>
+          <td>
+            {pokemonData.moves.length}
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   );
 }

@@ -1,13 +1,11 @@
 .pokemonsWrapper {
   width: 600px;
-  padding: 30px;
+  padding: 30px 90px;
 
   .pokemons {
     display: grid;
-    //grid-template-columns: 200px 200px 200px;
-    grid-template-columns: repeat(3, 1fr); /* 3 айтема в строке */
-    grid-template-rows: repeat(2, auto); /* 2 строки */
-    //grid-gap: 20px; /* Расстояние между айтемами */
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
     grid-gap: 20px;
   }
 
