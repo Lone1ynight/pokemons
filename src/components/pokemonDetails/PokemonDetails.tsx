@@ -9,6 +9,7 @@ import {
 export interface PokemonDetailsProps {
   name: string
 }
+
 export const PokemonDetails: FC<PokemonDetailsProps> = ({ name }) => {
   const { data: pokemonData, isLoading: pokemonLoading } = useGetPokemonQuery(name);
 
